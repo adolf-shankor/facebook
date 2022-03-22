@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.facebook.entity.FacebookUser;
 import com.facebook.entity.TimelineDetails;
+import com.facebook.exception.CustomException;
 
 public class FacebookDAO implements FacebookDAOInterface {
 	
@@ -30,6 +31,9 @@ public class FacebookDAO implements FacebookDAOInterface {
 		int i = 0;
 		
 		try {
+			if(fu.getName().equals("power")) {
+				throw new CustomException();
+			}
 			
 			PreparedStatement ps=con.prepareStatement("insert into facebookUser values(?,?,?,?)");
 			ps.setString(1, fu.getName());

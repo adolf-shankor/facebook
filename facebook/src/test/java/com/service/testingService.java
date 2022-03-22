@@ -60,11 +60,11 @@ public class testingService {
 	public void testTimeline() {
 
 		TimelineDetails tld = new TimelineDetails();
-		tld.setMessageid("fgf");
+		tld.setMessageid("rty");
 		tld.setSender("hg");
 		tld.setMessage("gh");
 		tld.setDate("ghg");
-		tld.setReceiver("gghh");
+		tld.setReceiver("gghhk");
 		int i=fs.timeline(tld);
 		assert i>0:"test case failed";
 		

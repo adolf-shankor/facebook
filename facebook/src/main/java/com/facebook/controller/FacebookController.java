@@ -7,6 +7,8 @@ import com.facebook.entity.FacebookUser;
 import com.facebook.entity.TimelineDetails;
 import com.facebook.service.FacebookServiceInterface;
 import com.facebook.utility.ServiceFactory;
+import com.facebook.utility.SortByName;
+
 import java.util.logging.Logger;
 
 public class FacebookController implements FacebookControllerInterface {
@@ -119,16 +121,16 @@ public class FacebookController implements FacebookControllerInterface {
 		FacebookUser i=fs.viewprofile(fu);
 		
 		if(i!=null) {
-			log.info("Name is "+i.getName());
-			log.info("Password is "+i.getPassword());
-			log.info("Email is "+i.getEmail());
-			log.info("Address is "+i.getAddress());
+			System.out.println("Name is "+i.getName());
+			System.out.println("Password is "+i.getPassword());
+			System.out.println("Email is "+i.getEmail());
+			System.out.println("Address is "+i.getAddress());
 			
 			j=1;
 			
 		}
 		else {
-			log.info("Norecord found");
+			System.out.println("Norecord found");
 		}
 		return j;
 		
@@ -145,15 +147,49 @@ public class FacebookController implements FacebookControllerInterface {
 		log.info(ll.size()+"records found in database");
 		// ll.forEach( (n) -> { System.out.println(n);});
 			
-			ll.forEach(s->{
+		ll.forEach(s->{
+			
+			System.out.println("***********");
+			System.out.println(s.getName());
+			System.out.println(s.getPassword());
+			System.out.println(s.getEmail());
+			System.out.println(s.getAddress());
+			
+		});
+		
+			System.out.println("*******************************************");
+			System.out.println("Press 1 to Print in sorted order of Name");
+			System.out.println("Press 2 to Print in sorted order of Address");
+			System.out.println("*******************************************");
+			Scanner sc=new Scanner(System.in);
+			int ch;
+			ch=sc.nextInt();
+			switch(ch) {
+			case 1:
 				
-				log.info("***********");
-				log.info(s.getName());
-				log.info(s.getPassword());
-				log.info(s.getEmail());
-				log.info(s.getAddress());
+				Collections.sort(ll, new SortByName());
 				
-			});
+				ll.forEach(s->{
+					
+					System.out.println("***********");
+					System.out.println(s.getName());
+					System.out.println(s.getPassword());
+					System.out.println(s.getEmail());
+					System.out.println(s.getAddress());
+					
+				});
+				
+				break;
+				
+			case 2:
+				
+				break;
+				
+			default:
+				System.out.println("wrong choice");
+				
+			}
+			
 			
 		
 		
@@ -174,16 +210,16 @@ public class FacebookController implements FacebookControllerInterface {
 		
 		List<FacebookUser> ll=fs.searchallprofile(fu);
 		//List<SwiggyUser> ll = ss.viewAllProfilesService();
-		log.info(ll.size()+"records found in database");
+		System.out.println(ll.size()+"records found in database");
 		// ll.forEach( (n) -> { System.out.println(n);});
 			
 			ll.forEach(s->{
 				
-				log.info("***********");
-				log.info(s.getName());
-				log.info(s.getPassword());
-				log.info(s.getEmail());
-				log.info(s.getAddress());
+				System.out.println("***********");
+				System.out.println(s.getName());
+				System.out.println(s.getPassword());
+				System.out.println(s.getEmail());
+				System.out.println(s.getAddress());
 				
 			});
 			//return i;
@@ -195,20 +231,20 @@ public class FacebookController implements FacebookControllerInterface {
 
 	public int timeline() {
 		Scanner sc=new Scanner(System.in);
-		System.out.println("enter message id");
+		log.info("enter message id");
 		String messageid = sc.next();
 		
-		System.out.println("enter sender userid");
+		log.info("enter sender userid");
 		String sender = sc.next();
 		
 		//receiver id should be in userdetails table
-		System.out.println("enter reciver id");
+		log.info("enter reciver id");
 		String receiver = sc.next();
 		
-		System.out.println("enter message");
+		log.info("enter message");
 		String message = sc.next();
 		
-		System.out.println("enter date");
+		log.info("enter date");
 		String date = sc.next();
 		
 		
@@ -268,10 +304,10 @@ public class FacebookController implements FacebookControllerInterface {
 		
 		int i=fs.editprofile(fu);
 		if(i>0) {
-			log.info("edited");
+			System.out.println("edited");
 		}
 		else {
-			log.info("not edited");
+			System.out.println("not edited");
 		}
 		}
 		//return i;

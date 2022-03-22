@@ -1,0 +1,16 @@
+package com.facebook.utility;
+
+import java.util.Comparator;
+
+import com.facebook.entity.FacebookUser;
+
+public class SortByName implements Comparator<FacebookUser>{
+
+	@Override
+	public int compare(FacebookUser u1,FacebookUser u2) {
+		
+		return u1.getName().compareTo(u2.getName());
+	}
+	
+
+}
